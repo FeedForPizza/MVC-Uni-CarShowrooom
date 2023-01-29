@@ -1,0 +1,58 @@
+﻿@model IEnumerable<CS.Models.Cars>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+        body{
+            background-color: #00264d;
+        }
+        h2 {
+            font-family: "Times New Roman", Times, serif;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+        }
+        img{
+            float: right;
+            width: 700px;
+            height: 400px;
+        }
+        
+        .btn 
+        {
+                background-color: #d9d9d9;
+                border: blue;
+                color: BLACK;
+                font-weight: bold;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 17px;
+                cursor: pointer;
+                border-radius: 30PX;
+                
+        }
+        
+</style>
+
+<body>
+  <div>  
+
+    
+    <h2 class="display-4 " >Новият Ford Mustang Mach-E GT</h2>
+    <img src ="https://www.ford.co.uk/content/dam/guxeu/rhd/central/cars/2021-mustang-mach-e-gt/launch/gallery/exterior/ford-mustang_mach_e_gt-FoE-front_34_dynamic-16x9-2160x1215-ga.jpg.renditions.original.png" 
+           >
+    
+    <input type="button"  class="btn" value="ЗАЯВИ ТЕСТ ДРАЙВ" onclick="window.location= '@Url.Action( "Create", "TestDrive")'" />
+    <br>  <br>
+    <input type="button" id="myButton" class="btn" value="ХАРАКТЕРИСТИКИ" onclick="window.location= '@Url.Action("Details","Cars")'" />
+    
+   </div> 
+
+</body>
+<script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "https://localhost:7193/Cars/Details/1";
+    };
+</script>

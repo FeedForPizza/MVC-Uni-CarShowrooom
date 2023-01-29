@@ -1,0 +1,85 @@
+﻿@model IEnumerable<CS.Models.Orders>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Списък с поръчки</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Extra)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.OriginalPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SumOfOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientMiddleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientLastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Extra)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.OriginalPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SumOfOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientMiddleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                <a class="btn btn-outline-info" asp-action="Edit" asp-route-id="@item.OrderID">Редактиране</a> |
+                <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.OrderID">Детайли</a> |
+                <a class="btn btn-outline-info" asp-action="Delete" asp-route-id="@item.OrderID">Изтриване</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

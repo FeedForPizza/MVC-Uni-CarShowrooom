@@ -1,0 +1,128 @@
+﻿@model IEnumerable<CS.Models.Cars>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Pager pager = new Pager();
+    int pageNo = 0;
+    if(ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
+
+}
+@if(TempData["success"] != null)
+{
+    <h2>@TempData["success"]</h2>
+}
+<form asp-action = "Index" methot = "get">
+    <div class = "form-group">
+        <lable for ="SearchString">Търси кола: </lable>
+        <input type= "text" class = "form_control" name= "SearchString" value ="@ViewData["CurrentFilter"]" />
+        <input type="submit" value= "Търсене" class= "btn-primary btn-primary"/>
+    </div>
+</form>
+
+@if (User.Identity.IsAuthenticated)
+{
+  <p>
+    <a class="btn btn-outline-info" asp-action="Create">Нова кола</a>
+</p>  
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PictureURL)
+            </th>
+            <th>
+                 <a asp-action="Index" asp-route-sortOrder="@ViewData["ExtraNameSortParam"]">
+                @Html.DisplayNameFor(model => model.Model)</a>
+            </th>
+            <th>
+                 <a asp-action="Index" asp-route-sortOrder="@ViewData["PriceSortParam"]">
+                @Html.DisplayNameFor(model => model.HP)</a>
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.TypeFuel)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfSeats)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.YearOfManufacture)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.TypeCompartment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OriginalPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                        <img class="rounded-circle" src="@item.PictureURL" style="max-width: 150px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeFuel)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfSeats)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.YearOfManufacture)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeCompartment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OriginalPrice)
+            </td>
+            <td>
+                <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.CarsID">Детайли </a> 
+            </td>
+            <td>
+            @if(User.Identity.IsAuthenticated)
+                    {
+                        <a class="btn btn-outline-info" asp-action="Edit" asp-route-id="@item.CarsID">Редактирай </a> 
+                        <a class="btn btn-outline-info" asp-action="Delete" asp-route-id="@item.CarsID">Изтрий </a>
+                    }
+            </td>
+        </tr>
+        }
+    </tbody>
+
+</table>
+
+<div class=container>
+    @if(pager.TotalPages > 0)
+    {
+        <ul class ="pagination justify-content-end">
+            @for(var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+                {
+                    <li class= "page-item @(pge == pager.CurrentPage ? "active" :"")">
+                        <a class= "page-link" asp-controller = "Cars" asp-action = "Index" asp-route-pg= "@pge"> @pge</a>
+                    </li>
+                }
+        </ul>
+    }
+</div>

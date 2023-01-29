@@ -1,0 +1,77 @@
+﻿@model CS.Models.Orders
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Редактиране</h1>
+@using (Html.BeginForm("ProcessEdit", "TestDrive"))
+{
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="Extra" class="control-label"></label>
+                <input asp-for="Extra" class="form-control" />
+                <span asp-validation-for="Extra" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="OriginalPrice" class="control-label"></label>
+                <input asp-for="OriginalPrice" class="form-control" />
+                <span asp-validation-for="OriginalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SumOfOrder" class="control-label"></label>
+                <input asp-for="SumOfOrder" class="form-control" />
+                <span asp-validation-for="SumOfOrder" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClientFirstName" class="control-label"></label>
+                <input asp-for="ClientFirstName" class="form-control" />
+                <span asp-validation-for="ClientFirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClientMiddleName" class="control-label"></label>
+                <input asp-for="ClientMiddleName" class="form-control" />
+                <span asp-validation-for="ClientMiddleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClientLastName" class="control-label"></label>
+                <input asp-for="ClientLastName" class="form-control" />
+                <span asp-validation-for="ClientLastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+}
+<div>
+    <a class="btn btn-outline-info" asp-action="Index">Назад към списъка</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
